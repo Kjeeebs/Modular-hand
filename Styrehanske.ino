@@ -48,8 +48,10 @@ void loop()
 {
   Finger1   = analogRead(ResFinger1);  
   Finger2   = analogRead(ResFinger2);  
-  Finger3   = analogRead(ResFinger3); 
+  Finger3   = analogRead(ResFinger3);
+  
    
+
   
   if(Finger1   > OpenedFinger1)   // Calibration reading and setting the maximum values. This needs you to completely open your hand a few times
   OpenedFinger1   = Finger1;
@@ -67,15 +69,20 @@ void loop()
   ClosedFinger3  = Finger3;
   
   
-  Finger1   = map(Finger1  ,ClosedFinger1  ,OpenedFinger1  ,0,180);  // The analog read has to be readapted in values between 0 and 180 to be used by the servomotors.
-  Finger2   = map(Finger2  ,ClosedFinger2  ,OpenedFinger2  ,0,180);  // The minimum and maximum values from the calibrations are used to correctly set the analog reads.
-  Finger3   = map(Finger3  ,ClosedFinger3  ,OpenedFinger3  ,0,180);
-  
+  Finger1_1   = map(Finger1  ,ClosedFinger1  ,OpenedFinger1  ,0,180);  // The analog read has to be readapted in values between 0 and 180 to be used by the servomotors.
+  Finger2_1   = map(Finger2  ,ClosedFinger2  ,OpenedFinger2  ,0,180);  // The minimum and maximum values from the calibrations are used to correctly set the analog reads.
+  Finger3_1   = map(Finger3  ,ClosedFinger3  ,OpenedFinger3  ,0,180);
+  Finger1_2   = map(Finger1  ,ClosedFinger1  ,OpenedFinger1  ,0,70);
+  Finger2_2   = map(Finger2  ,ClosedFinger2  ,OpenedFinger2  ,0,70);
+  Finger3_2   = map(Finger3  ,ClosedFinger3  ,OpenedFinger3  ,0,70);
   
   SUART.write("<");        // This character represent the beginning of the package of the three values
-  SUART.write(Finger1);    // The values are sent via the Tx pin (the digital pin 1)
-  SUART.write(Finger2);  
-  SUART.write(Finger3);  
+  SUART.write(Finger1_1);    // The values are sent via the Tx pin (the digital pin 1)
+  SUART.write(Finger2_1);  
+  SUART.write(Finger3_1); 
+  SUART.write(Finger1_2);
+  SUART.write(Finger2_2);
+  SUART.write(Finger3_2);
   
   
   delay(30);
