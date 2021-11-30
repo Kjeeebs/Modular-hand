@@ -70,9 +70,18 @@ void loop()
       
       if(AngFinger3_2!=255)
         ServoFinger3_2.write(AngFinger3_2);
-    
+      delay(30);
          
     }
-  }
-  delay(30); // a delay to make the servomotors working correctly (a lower value could make the system not working, higher value make it slower)
+    if(Master.available()){
+      
+      startPackage2 = Master.write(>);
+      ForceSense1 = Master.write();
+      ForceSense2 = Master.write();
+      ForceSense3 = Master.write();
+      
+      delay(30);
+      
+    }
+  
 }            
