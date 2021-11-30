@@ -9,6 +9,8 @@ int VibFinger1 = 3; //Pins for the vibrators
 int VibFinger2 = 4;
 int Vibfinger3 = 5;
 
+byte startPackage2;
+
 int OpenedFinger1   =0; // Variables of the values when the hand is completely opened
 int OpenedFinger2   =0; // This is needed for a continuous calibration
 int OpenedFinger3   =0;
