@@ -90,12 +90,12 @@ void loop()
   
   if(SUART.available()) {
     
-    startPackage = SUART.read();
+    startPackage2 = SUART.read();
     VibFingerS1 = SUART.read();
     VibFingerS2 = SUART.read();
     VibFingerS3 = SUART.read();
     
-    if(startPackage2 == `>`){
+    if(startPackage2 == ">"){
       
       if(VibFingerS1 = HIGH)
         VibFinger1.write(HIGH);
