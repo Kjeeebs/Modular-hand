@@ -4,14 +4,17 @@
 #include <SoftwareSerial.h>
 SoftwareSerial Master(1,2);
 
-Servo ServoFinger1, ServoFinger2,        // Assigns the six  servos
-ServoFinger3,ServoFinger1_2,ServoFinger2_2,ServoFinger3_2;
+Servo ServoFinger1_1, ServoFinger2_1,        // Assigns the six  servos
+ServoFinger3_1,ServoFinger1_2,ServoFinger2_2,ServoFinger3_2;
 
 byte startPackage; // Variable that will contain the character of start package set in the Styrehanske sketch, "<" 
 
-int AngFinger1   = 0;   // Variables with the values for the servomotors (between 0 and 180)
-int AngFinger2   = 0;
-int AngFinger3   = 0;
+int AngFinger1_1   = 0;   // Variables with the values for the servomotors (between 0 and 180)
+int AngFinger2_1   = 0;
+int AngFinger3_1   = 0;
+int AngFinger1_2   = 0;
+int AngFinger2_2   = 0;
+int AngFinger3_2   = 0;
 
 
 
@@ -41,21 +44,32 @@ void loop()
   if(Master.available()) {    // Waiting for data incoming from the other Arduino module
     
     startPackage = Master.read(); // The first value will be "<", the other are assigned to the finger
-    AngFinger1   = Master.read();       
-    AngFinger2   = Master.read();       
-    AngFinger3   = Master.read();
-    
+    AngFinger1_1   = Master.read();       
+    AngFinger2_1   = Master.read();       
+    AngFinger3_1   = Master.read();
+    AngFinger1_2   = Master.read();
+    AngFinger2_2   = Master.read();
+    AngFinger3_2   = Master.read();
     
     if(startPackage == '<'){   // Verifying that the first value is "<"
     
-      if(AngFinger1!=255)  // Sometimes the incoming value goes to 255, I couldn't discover yet the reason, so I simply excluded it when it happens. You can remove this line for every finger if you don't have this kind of problem
-      ServoFinger1.write(AngFinger1);  // The servomotors rotates of the assigned degrees
-                                                    
-      if(AngFinger2!=255)
-      ServoFinger2.write(AngFinger2);
+      if(AngFinger1_1!=255)  // Sometimes the incoming value goes to 255, I couldn't discover yet the reason, so I simply excluded it when it happens. You can remove this line for every finger if you don't have this kind of problem
+      ServoFinger1.write(AngFinger1_1);  // The servomotors rotates of the assigned degrees
+      
+      if(AngFinger1_2!=255)
+        ServoFinger1_2.write(AngFinger1_2)
+        
+      if(AngFinger2_1!=255)
+      ServoFinger2_1.write(AngFinger2_1);
+      
+      if(AngFinger2_2!=255)
+        ServoFinger2_2.write(AngFinger2_2);
     
-      if(AngFinger3!=255)
-      ServoFinger3.write(AngFinger3);
+      if(AngFinger3_1!=255)
+        ServoFinger3_1.write(AngFinger3_1);
+      
+      if(AngFinger3_2!=255)
+        ServoFinger3_2.write(AngFinger3_2);
     
          
     }
