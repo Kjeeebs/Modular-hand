@@ -18,7 +18,7 @@ int AngFinger3   = 0;
 void setup()
 {
   Serial.begin(9600);      // Serial communication is activated at 9600 baud/s.
-  SUART.begin(9600);
+  Master.begin(9600);
   
   ServoFinger1.attach(9);  // The servomotors are asigned to the pins of the Arduino UNO board.
   delay(300);              // A delay of 300ms is set for a secure connection (this can be optional)
