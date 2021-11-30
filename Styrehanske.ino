@@ -84,6 +84,26 @@ void loop()
   SUART.write(Finger2_2);
   SUART.write(Finger3_2);
   
-  
   delay(30);
+  
+  if(SUART.available()) {
+    
+    startPackage = SUART.read();
+    VibFingerS1 = SUART.read();
+    VibFingerS2 = SUART.read();
+    VibFingerS3 = SUART.read();
+    
+    if(startPackage == `<`){
+      
+      if(VibFingerS1 = HIGH)
+        VibFinger1.write(HIGH);
+      
+      if(VibFingerS2 = HIGH)
+        VibFinger2.write(HIGH);
+      
+      if(VibFingerS3 = HIGH)
+        VibFinger3.write = HIGH);
+      
+    }
+  
 }
