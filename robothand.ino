@@ -2,7 +2,7 @@
 
 #include <Servo.h>   // Library needed to use function for servomotors
 #include <SoftwareSerial.h>
-SoftwareSerial SUART(1,2);
+SoftwareSerial Master(1,2);
 
 Servo ServoFinger1, ServoFinger2,        // Assigns the six  servos
 ServoFinger3,ServoFinger1_2,ServoFinger2_2,ServoFinger3_2;
@@ -33,17 +33,17 @@ void setup()
   ServoFinger3_2.attach(4);
   delay(300);
   
-  SUART.println("Ready to receive."); 
+  Master.println("Ready to receive."); 
 }
 
 void loop()
 { 
-  if(SUART.available()) {    // Waiting for data incoming from the other Arduino module
+  if(Master.available()) {    // Waiting for data incoming from the other Arduino module
     
-    startPackage = SUART.read(); // The first value will be "<", the other are assigned to the finger
-    AngFinger1   = SUART.read();       
-    AngFinger2   = SUART.read();       
-    AngFinger3   = SUART.read();
+    startPackage = Master.read(); // The first value will be "<", the other are assigned to the finger
+    AngFinger1   = Master.read();       
+    AngFinger2   = Master.read();       
+    AngFinger3   = Master.read();
     
     
     if(startPackage == '<'){   // Verifying that the first value is "<"
