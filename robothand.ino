@@ -7,6 +7,10 @@ SoftwareSerial Master(1,2);
 Servo ServoFinger1_1, ServoFinger2_1,        // Assigns the six  servos
 ServoFinger3_1,ServoFinger1_2,ServoFinger2_2,ServoFinger3_2;
 
+int ForceSense1 = 10;
+int ForceSense2 = 11;
+int ForceSense3 = 12;
+
 byte startPackage; // Variable that will contain the character of start package set in the Styrehanske sketch, "<" 
 
 int AngFinger1_1   = 0;   // Variables with the values for the servomotors (between 0 and 180)
@@ -75,7 +79,7 @@ void loop()
     }
     if(Master.available()){
       
-      startPackage2 = Master.write(>);
+      startPackage2 = Master.write(">");
       ForceSense1 = Master.write();
       ForceSense2 = Master.write();
       ForceSense3 = Master.write();
